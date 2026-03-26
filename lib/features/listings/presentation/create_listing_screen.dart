@@ -21,7 +21,6 @@ class _CreateListingScreenState extends ConsumerState<CreateListingScreen> {
   ListingType _listingType = ListingType.rent;
   int _bedrooms = 1;
   int _bathrooms = 1;
-  double _area = 0;
 
   @override
   void dispose() {

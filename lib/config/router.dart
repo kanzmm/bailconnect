@@ -1,7 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import '../../../core/providers/auth_provider.dart';
 import '../features/auth/presentation/login_screen.dart';
 import '../features/auth/presentation/register_screen.dart';
 import '../features/listings/presentation/home_screen.dart';
@@ -11,8 +9,6 @@ import '../features/chat/presentation/messages_screen.dart';
 import '../features/profile/presentation/profile_screen.dart';
 
 final goRouterProvider = Provider<GoRouter>((ref) {
-  final isAuthenticated = ref.watch(isAuthenticatedProvider);
-
   return GoRouter(
     initialLocation: '/home', // Bypass login pour le développement
     redirect: (context, state) {

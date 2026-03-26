@@ -17,17 +17,19 @@ class ListingService {
   }) async {
     try {
       final offset = (page - 1) * limit;
-      var query = SupabaseConfig.client.listings
-          .select()
-          .eq('status', 'active')
-          .range(offset, offset + limit - 1);
+      var query = SupabaseConfig.client.listings.select().eq(
+        'status',
+        'active',
+      );
 
-      if (city != null) query = query.eq('city', city);
-      if (type != null) query = query.eq('type', type.name);
-      if (minPrice != null) query = query.gte('price', minPrice);
-      if (maxPrice != null) query = query.lte('price', maxPrice);
+      // Appliquer les filtres conditionnels avant range
+      if (city != null) query = query.filter('city', 'eq', city);
+      if (type != null) query = query.filter('type', 'eq', type.name);
+      if (minPrice != null) query = query.filter('price', 'gte', minPrice);
+      if (maxPrice != null) query = query.filter('price', 'lte', maxPrice);
 
-      final response = await query;
+      // Appliquer la pagination à la fin
+      final response = await query.range(offset, offset + limit - 1);
 
       return (response as List)
           .map((json) => _mapToListing(json as Map<String, dynamic>))
