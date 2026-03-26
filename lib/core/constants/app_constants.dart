@@ -6,8 +6,9 @@ class AppConstants {
   static const String appSlogan = 'Louez, signez, payez — en toute confiance.';
 
   // Supabase
-  static const String supabaseUrl = 'YOUR_SUPABASE_URL';
-  static const String supabaseAnonKey = 'YOUR_SUPABASE_ANON_KEY';
+  static const String supabaseUrl = 'https://vzblfxssaisnpfavhjif.supabase.co';
+  static const String supabaseAnonKey =
+      'sb_publishable_meuibhtV1LZ0AlMPOF57NA_WBLpqnDO';
 
   // Google Maps
   static const String googleMapsApiKey = 'YOUR_GOOGLE_MAPS_KEY';
