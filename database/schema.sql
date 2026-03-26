@@ -53,20 +53,6 @@ CREATE TABLE IF NOT EXISTS listings (
 );
 
 -- =====================================
--- TABLE: messages
--- =====================================
-CREATE TABLE IF NOT EXISTS messages (
-  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
-  conversation_id UUID NOT NULL REFERENCES conversations(id) ON DELETE CASCADE,
-  sender_id UUID NOT NULL REFERENCES users(id),
-  sender_name VARCHAR(255) NOT NULL,
-  content TEXT NOT NULL,
-  is_read BOOLEAN DEFAULT FALSE,
-  image_url TEXT,
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
--- =====================================
 -- TABLE: conversations
 -- =====================================
 CREATE TABLE IF NOT EXISTS conversations (
@@ -78,6 +64,20 @@ CREATE TABLE IF NOT EXISTS conversations (
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   UNIQUE(user_id_1, user_id_2)
+);
+
+-- =====================================
+-- TABLE: messages
+-- =====================================
+CREATE TABLE IF NOT EXISTS messages (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  conversation_id UUID NOT NULL REFERENCES conversations(id) ON DELETE CASCADE,
+  sender_id UUID NOT NULL REFERENCES users(id),
+  sender_name VARCHAR(255) NOT NULL,
+  content TEXT NOT NULL,
+  is_read BOOLEAN DEFAULT FALSE,
+  image_url TEXT,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- =====================================
